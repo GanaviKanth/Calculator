@@ -21,13 +21,16 @@ class _EquationState extends State<Equation> {
 
   @override
   Widget build(BuildContext context) {
-    final eq = Provider.of<Operation>(context, listen: false);
+    final eq = Provider.of<Operation>(context);
     String val = sets(eq.value);
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.15,
-      width: MediaQuery.of(context).size.height * 1,
-      color: Colors.white,
-      child: Text(val),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.15,
+        width: MediaQuery.of(context).size.height * 1,
+        color: Colors.white,
+        child: Text(val),
+      ),
     );
   }
 }
