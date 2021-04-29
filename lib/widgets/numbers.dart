@@ -1,7 +1,6 @@
 //import '../widgets/equation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:math_expressions/math_expressions.dart';
 
 import '../providers/operation.dart';
 
@@ -25,7 +24,12 @@ class Numbers extends StatelessWidget {
     return GridView.builder(
         itemCount: numbers.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, crossAxisSpacing: 4, mainAxisSpacing: 4),
+          crossAxisCount: 3,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+          childAspectRatio: MediaQuery.of(context).size.width /
+              (MediaQuery.of(context).size.height / 1.7),
+        ),
         itemBuilder: (BuildContext ctx, int index) {
           var clipRRect = ConcatNumbers(index, numbers);
           return clipRRect;
@@ -48,16 +52,10 @@ class ConcatNumbers extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (numbers[index] == "=") {
-            Parser p = Parser();
-            Expression exp = p.parse(eq.value);
-
-            ContextModel cm = ContextModel();
-            double eval = exp.evaluate(EvaluationType.REAL, cm);
-            String answer = eval.toString();
-            print(answer);
+            eq.result();
           } else {
             eq.add(numbers[index]);
-            
+
             print(eq.value);
           }
           //print(eq.value);

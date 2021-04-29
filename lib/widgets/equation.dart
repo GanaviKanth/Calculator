@@ -29,7 +29,13 @@ class _EquationState extends State<Equation> {
         height: MediaQuery.of(context).size.height * 0.15,
         width: MediaQuery.of(context).size.height * 1,
         color: Colors.white,
-        child: Text(val),
+        child: Text(
+          val,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
+        ),
       ),
     );
   }

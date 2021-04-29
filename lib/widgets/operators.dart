@@ -26,31 +26,28 @@ class Operators extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final eq = Provider.of<Operation>(context, listen: false);
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(170),
-            child: SizedBox(
-                width: 70,
-                height: 85,
-                child: FlatButton(
-                    color: Colors.amber,
-                    onPressed: () {
-                      eq.backspace();
-                      print(eq.value);
-                    },
-                    child: Icon(Icons.backspace))),
-          ),
-          opd(context, "+", eq),
-          opd(context, "-", eq),
-          opd(context, "*", eq),
-          opd(context, "/", eq),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        ClipRRect(
+          borderRadius: BorderRadius.circular(170),
+          child: SizedBox(
+              width: 70,
+              height: 85,
+              child: FlatButton(
+                  color: Colors.amber,
+                  onPressed: () {
+                    eq.backspace();
+                    print(eq.value);
+                  },
+                  child: Icon(Icons.backspace))),
+        ),
+        opd(context, "+", eq),
+        opd(context, "-", eq),
+        opd(context, "*", eq),
+        opd(context, "/", eq),
+      ],
     );
   }
 }

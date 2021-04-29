@@ -29,6 +29,7 @@ class DialPad extends StatelessWidget {
                 Container(
                   //oerator buttons
                   width: MediaQuery.of(context).size.width * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.9,
                   color: Colors.black12,
                   child: Operators(),
                 )
@@ -39,11 +40,30 @@ class DialPad extends StatelessWidget {
             //extra elements like braces
             height: MediaQuery.of(context).size.height * 0.08,
             color: Colors.cyan,
-            child: Center(
-                child: IconButton(
-                    icon: Icon(Icons.arrow_upward), onPressed: () {})),
+            child: Clear(),
           )
         ],
+      ),
+    );
+  }
+}
+
+class Clear extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final eq = Provider.of<Operation>(context, listen: false);
+    return Center(
+      child: Container(
+        color: Colors.red,
+        child: IconButton(
+            icon: Icon(
+              Icons.clear,
+              semanticLabel: 'CLEAR',
+              color: Colors.black,
+            ),
+            onPressed: () {
+              eq.clear();
+            }),
       ),
     );
   }
